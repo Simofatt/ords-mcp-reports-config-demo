@@ -1,0 +1,22 @@
+{
+  "id": "demo-find-high-earning-employees",
+  "displayName": "find_high_earning_employees",
+  "databases": ["sales-admin"],
+  "description": "Finds employees whose salary is greater than or equal to a supplied minimum salary. Read-only custom SQL tool.",
+  "source": "SELECT employee_id, first_name, last_name, email, department, job_title, salary, hire_date FROM PDBDBA.EMPLOYEES WHERE salary >= :minimum_salary ORDER BY salary DESC, last_name, first_name",
+  "variables": [
+    {"name": "minimum_salary", "type": "NUMBER", "description": "Minimum salary threshold."}
+  ],
+  "columns": [
+    {"name": "employee_id", "type": "INTEGER", "description": "Employee identifier."},
+    {"name": "first_name", "type": "VARCHAR2", "description": "Employee first name."},
+    {"name": "last_name", "type": "VARCHAR2", "description": "Employee last name."},
+    {"name": "email", "type": "VARCHAR2", "description": "Employee email address."},
+    {"name": "department", "type": "VARCHAR2", "description": "Department name."},
+    {"name": "job_title", "type": "VARCHAR2", "description": "Employee job title."},
+    {"name": "salary", "type": "NUMBER", "description": "Employee salary."},
+    {"name": "hire_date", "type": "TIMESTAMP", "description": "Employee hire date."}
+  ],
+  "annotations": {"readOnly": true, "destructive": false},
+  "access": {"scope": "pools:read"}
+}

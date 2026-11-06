@@ -1,0 +1,30 @@
+{
+  "id": "demo-employee-directory-by-department-pool",
+  "displayName": "Employee Directory by Department",
+  "description": "Lists employees in a selected department for business users.",
+  "purpose": "Answer employee-directory questions with a controlled parameterized query.",
+  "instructions": "Provide the department name as text. Matching is case-insensitive and ignores leading or trailing spaces.",
+  "source": "SELECT employee_id, first_name, last_name, email, department, job_title, salary, hire_date FROM PDBDBA.EMPLOYEES WHERE UPPER(TRIM(department)) = UPPER(TRIM(:department_name)) ORDER BY last_name, first_name",
+  "variables": [
+    {
+      "name": "department_name",
+      "type": "VARCHAR2",
+      "description": "Department name to search for, such as Sales or Finance."
+    }
+  ],
+  "columns": [
+    {"name": "employee_id", "type": "INTEGER", "description": "Employee identifier."},
+    {"name": "first_name", "type": "VARCHAR2", "description": "Employee first name."},
+    {"name": "last_name", "type": "VARCHAR2", "description": "Employee last name."},
+    {"name": "email", "type": "VARCHAR2", "description": "Employee email address."},
+    {"name": "department", "type": "VARCHAR2", "description": "Department name."},
+    {"name": "job_title", "type": "VARCHAR2", "description": "Employee job title."},
+    {"name": "salary", "type": "NUMBER", "description": "Employee salary."},
+    {"name": "hire_date", "type": "TIMESTAMP", "description": "Employee hire date."}
+  ],
+  "access": {
+    "list": {"scope": "pools:read"},
+    "sql": {"scope": "pools:read"},
+    "execute": {"scope": "pools:read"}
+  }
+}

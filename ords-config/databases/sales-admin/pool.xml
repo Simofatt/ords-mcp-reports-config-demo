@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="db.connectionType">basic</entry>
+  <entry key="db.credentialsSource">pool</entry>
+  <entry key="db.hostname">localhost</entry>
+  <entry key="db.port">1521</entry>
+  <entry key="db.servicename">YOUR_PDB_SERVICE</entry>
+  <entry key="db.username">PDBDBA</entry>
+  <entry key="db.password">CHANGE_ME</entry>
+  <entry key="db.description">ORDS MCP demo database</entry>
+  <entry key="mcp.scope">pools:read</entry>
+  <entry key="feature.mcp.schemaReports">true</entry>
+</properties>

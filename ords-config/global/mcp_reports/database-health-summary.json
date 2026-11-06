@@ -1,0 +1,21 @@
+{
+  "id": "demo-database-health-summary-global",
+  "displayName": "Database Health Summary",
+  "description": "DBA-only summary of invalid objects, active sessions, storage, and database uptime.",
+  "purpose": "Demonstrate a protected administrative report.",
+  "instructions": "Use only for database administration and health checks.",
+  "databases": ["sales-admin"],
+  "source": "SELECT (SELECT COUNT(*) FROM dba_objects WHERE status = 'INVALID') AS invalid_objects, (SELECT COUNT(*) FROM v$session WHERE status = 'ACTIVE') AS active_sessions, (SELECT ROUND(SUM(bytes) / POWER(1024, 3), 2) FROM dba_data_files) AS allocated_storage_gb, (SELECT ROUND(SUM(bytes) / POWER(1024, 3), 2) FROM dba_free_space) AS free_storage_gb, (SELECT ROUND((SYSDATE - startup_time) * 24, 2) FROM v$instance) AS uptime_hours FROM dual",
+  "columns": [
+    {"name": "invalid_objects", "type": "INTEGER", "description": "Number of invalid database objects."},
+    {"name": "active_sessions", "type": "INTEGER", "description": "Number of active database sessions."},
+    {"name": "allocated_storage_gb", "type": "NUMBER", "description": "Allocated data-file storage in GB."},
+    {"name": "free_storage_gb", "type": "NUMBER", "description": "Free tablespace storage in GB."},
+    {"name": "uptime_hours", "type": "NUMBER", "description": "Database uptime in hours."}
+  ],
+  "access": {
+    "list": {"scope": "pools:read"},
+    "sql": {"scope": "pools:read"},
+    "execute": {"scope": "pools:dba"}
+  }
+}
